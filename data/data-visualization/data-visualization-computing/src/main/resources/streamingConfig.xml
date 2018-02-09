@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	
+	<app id="tradeCount">
+		<processor>com.shankephone.data.visualization.computing.ticket.streaming.TicketRealtimeProcessor</processor>
+		<processor>com.shankephone.data.visualization.computing.ticket.streaming.GateTransitCountProcessor</processor>
+	</app>
+
+</config>

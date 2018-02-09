@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- 
+		topic可以为全称或者正则表达式，比如：
+		tickets-4401
+		tickets-.*
+	 -->
+	<sub topic="trade:vol:*" class="com.shankephone.data.visualization.web.trade.DayTradeVolProcessor" />
+	<sub topic="trade:source:vol:*" class="com.shankephone.data.visualization.web.trade.DayTradeSourceProcessor" />
+	<sub topic="pay:type:*" class="com.shankephone.data.visualization.web.trade.CityPayTypeProcessor" />
+	<sub topic="tickets:30days:*" class="com.shankephone.data.visualization.web.ticket.MonthTicketsProcessor" />
+	<sub topic="gate:vol:4401" class="com.shankephone.data.visualization.web.trade.GateTransitCountProcessor" />
+	<sub topic="user:active*" class="com.shankephone.data.visualization.web.user.UserDataInitProcessor" />
+</config>

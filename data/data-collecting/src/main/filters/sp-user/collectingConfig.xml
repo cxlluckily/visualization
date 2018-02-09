@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config>
+	<kafkaTopic>storage</kafkaTopic>	
+	<table name="wcm_mobile" schema="mcwlt" hashColumn="MSISDN"/>
+	<table name="pr_customer" schema="mcwlt" hashColumn="CUSTOMER_ID"/>
+	<table name="mno_mdn_pool" schema="mcwlt" hashColumn="mdn_sub7"/>
+</config>

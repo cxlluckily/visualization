@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*公共基础begin*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea,table, th, td,div {margin:0px auto;padding: 0;}
+img{border: 0 none;vertical-align: top;}
+i, em {font-style: normal;}
+ol, ul {list-style: none outside none;}
+input, select, button, h1, h2, h3, h4, h5, h6 {font-family: inherit;font-size: 100%;font-weight:normal;}
+table {border-collapse: collapse; border-spacing: 0;}
+body {background: none repeat scroll 0 0 #fff;color: #000;font-family: Microsoft YaHei,Helvetica,STHeiti STXihei,Microsoft JhengHei,Arial;font-size: 14px;height: 100%;}
+.clear{clear:both; font-size:1px; line-height:1px;}
+.fl{float:left; display:inline;}
+.fr{float:right; display:inline;}
+.mt10{margin-top:10px;}
+.mt20{margin-top:20px;}
+.mt35{margin-top:35px;}
+.mt40{margin-top:40px;}
+.ml40{margin-left:40px;}
+.ml50{margin-left:50px;}
+
+
+/*链接样式*/
+a{color:#000; text-decoration:none;outline: none;}
+a:hover{color:#e90714; text-decoration:none;}
+
+.index_div{width:1920px;height:1080px;background:url(../images/index_bg.jpg) no-repeat;}
+.index_lf{width:1180px;float:left;height:1080px;}
+.index_top{overflow:hidden;}
+.index_top h1{color:#f8b30f;font-size:75px;text-align:left;font-family:"迷你简菱心";padding:40px 0px 20px;text-indent:40px;line-height:75px;}
+.index_top h2{color:#3cfbe7;font-size:30px;line-height:30px;text-align:left;font-family:"Franklin Gothic Demi";padding:5px 35px 5px;margin-left:40px;border-radius:30px;border:1px solid #3cfbe7;display:inline-block;}
+.index_lf_b{margin-top:570px;}
+.chart{width:514px;float:left;overflow:hidden;}
+.chart_top{width:514px;height:13px;background:url(../images/b_top.png) no-repeat;z-index: 1000; line-height:13px;font-size:0px;}
+.chart_bottom{width:514px;height:13px;background:url(../images/b_bottom.png) no-repeat;line-height:13px;font-size:0px;}
+.chart_m{width:474px;background:url(../images/b_bg.png) repeat-y;padding:0px 20px;}
+.chart_m h1{width:454px;background:url(../images/dot.jpg) no-repeat left;padding:10px 0px 10px 20px;color:#fff;font-family:"文鼎CS大黑";font-size:25px;line-height:25px;}
+.chart_m p{text-align:center;}
+.index_rt{width:635px;float:left;height:1080px;padding-right:35px;padding-left:70px;}
+.r_t{margin-top:20px;}
+.r_t h1{color:#fff;font-family:"文鼎CS大黑";font-size:40px;line-height:40px;padding:10px 0px;}
+.num_d{height:106px;margin-top:20px;}
+.num{width:78px;float:left;background:url(../images/num_d_bg.jpg) repeat-x center;height:106px;}
+.num p{width:70px;height:106px;background:url(../images/num_bg.png) no-repeat;color:#f6f6f6;font-size:100px;text-align:center;float:left;font-family:"impact";line-height:100px;}
+.r_m{background:#073768;overflow:hidden;border-bottom:1px solid #6284a7;}
+.r_m_1{float:left;width:307px;padding-left:10px;}
+.r_m_2{float:right;}
+.r_m_1 h1{font-family:"迷你简菱心";color:#fff;font-size:25px;line-height:25px;padding:12px 0px;}
+.r_m_1 h2{font-family:"impact";color:#ffb400;font-size:60px;line-height:60px;padding:0px 0px 10px;}
+.in_re_ta{width:635px;border-collapse:collapse;margin-bottom:4px;background:#0a90c2;}
+.in_re_ta td{height:55px;color:#fff;text-align:center;font-size:22px;}
+.in_re_ta2{background:#1159a3;}
+
+.city_div{width:1920px;height:1080px;background:url(../images/city_bg.jpg) no-repeat;}
+.subway{background:url(../images/subway_guangzhou.png) no-repeat left;height:1080px;}
+.city_rt{width:514px;float:right;height:1080px;margin:0px 25px;}
+.city_lf{width:1356px;float:left;height:1080px;}
+.c_m{background:url(../images/city_rebg.png) repeat;overflow:hidden;border-bottom:1px solid #6284a7;width:440px;float:left;margin-left:40px;padding-left:15px;}
+.c_m h1{font-family:"迷你简菱心";color:#fff;font-size:25px;line-height:25px;padding:12px 0px;}
+.c_m h2{font-family:"impact";color:#ffb400;font-size:60px;line-height:60px;padding:0px 0px 10px;}
+.c_b{margin-top:285px;width:1356px;}
+.c_b_box{width:318px;background:url(../images/c_bg.png) repeat;border:1px solid #1673a5;padding:15px 30px;overflow:hidden;float:left;}
+.c_b_box h1{color:#ffb400;font-family:"文鼎CS大黑";font-size:25px;line-height:25px;}
+.c_b_box_table{width:280px;margin-top:10px;}
+.c_b_box_table td{height:30px;color:#fff;font-size:16px;text-align:center;}
+.nm{background:#0de3cc;border-radius:60px;display:inline-block;padding:1px 7px;}
+
+
+#chart-map{
+    z-index: 100;
+	width:1800px;
+	height: 830px;
+	position: absolute;
+	top: 12px;
+	left: -460px;
+	right: 0;
+	bottom: 0; 
+}

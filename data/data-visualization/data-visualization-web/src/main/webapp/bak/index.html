@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪客蜂-全国</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/sockjs.min.js"></script>
+<script src="./js/json3.min.js"></script>
+<script src="./js/echarts.js"></script>
+<script src="./js/sub.js"></script>
+<script src="./js/subscribe.js"></script>
+<script src="./js/source.js"></script>
+<script src="./js/useractive.js"></script>
+<script src="./js/map.js"></script>
+<script src="./js/china.js"></script>
+</head>
+<body>
+  <div class="index_div">
+    <div class="index_lf">
+      <div class="index_top" style="z-index: 10;position: relative;">
+        <h1>闪客蜂全国</h1>
+        <h2 class="ticket_real_time"></h2>
+      </div>
+      <div id="chart-map" style="z-index: 1;"></div>
+      <div class="index_lf_b" style="z-index: 10;position: relative;">
+        <div class="chart ml50">
+          <div class="chart_top"></div>
+          <div class="chart_m">
+            <h1>每日用户数</h1>
+		   <div id="mainActive" style="width: 500px;height:230px;margin-left:-10px"></div>
+          </div>
+          <div class="chart_bottom"></div>
+        </div>
+        <div class="chart ml50">
+          <div class="chart_top"></div>
+          <div class="chart_m">
+            <h1>当日用户来源</h1>
+		   <div id="mainSource" style="width: 500px;height:230px;"></div>
+          </div>
+          <div class="chart_bottom"></div>
+        </div>
+      </div>      
+    </div>
+    <div class="index_rt" style="z-index: 10;position: relative;">
+      <div class="r_t">
+        <h1>当日售票量</h1>
+        <div class="num_d">
+          <div class="num"><p>0</p></div>
+          <div class="num"><p>0</p></div>
+          <div class="num"><p>0</p></div>
+          <div class="num"><p>0</p></div>
+          <div class="num"><p>0</p></div>
+          <div class="num"><p>0</p></div>
+          <div class="num"><p>0</p></div>
+          <div class="num" style="background:none;"><p>0</p></div>
+        </div>
+      </div>
+      <div class="r_m mt10">
+        <div class="r_m_1">
+          <h1>广州</h1>
+          <h2 id="ticket_gz">0</h2>
+        </div>
+        <div class="r_m_1 r_m_2">
+          <h1>南宁</h1>
+          <h2 id="ticket_nn">0</h2>
+        </div>
+      </div>
+      <div class="r_m">
+        <div class="r_m_1">
+          <h1>青岛</h1>
+          <h2 id="ticket_qd">0</h2>
+        </div>
+        <div class="r_m_1 r_m_2">
+          <h1>西安</h1>
+          <h2 id="ticket_xa">0</h2>
+        </div>
+      </div>
+      <div class="r_m" style="border-bottom:none;">
+        <div class="r_m_1">
+          <h1>郑州</h1>
+          <h2 id="ticket_zz">0</h2>
+        </div>
+		<div class="r_m_1 r_m_2">
+          <h1>长沙</h1>
+          <h2 id="ticket_cs">0</h2>
+        </div>          
+      </div>
+      <div class="r_t" style="margin-top:40px;" >
+        <h1>实时售票记录</h1>
+        <div id="dataDiv" style="padding-top: 10px;"></div>
+      </div>
+    </div>
+  </div> 
+</body>
+<script type="text/javascript">
+$(function(){
+		var num = 0;
+		var max = 10000;
+		var chartSource = echarts.init(document.getElementById('mainSource'));
+		var chartActive = echarts.init(document.getElementById('mainActive'));
+		
+        new Subscribe({
+			topic : "init-time",
+			pattern : false,
+			handle : function(data) {
+				$(".ticket_real_time").text(data);
+			}
+		});
+        
+		 new Subscribe({
+		 	topic : "tickets-*",
+		 	pattern : true,
+		 	handle : function(data){
+		 		var	className = "in_re_ta in_re_ta2";
+		 		var oldTime = $(".ticket_real_time").text();
+		 		if (data.TICKET_NOTI_TAKE_TICKET_RESULT_DATE > oldTime) {
+		 			$(".ticket_real_time").text(data.TICKET_NOTI_TAKE_TICKET_RESULT_DATE);
+		 		}
+		 		if(data.TICKET_GETOFF_STATION_NAME_CN == '--'){
+		 			data.TICKET_GETOFF_STATION_NAME_CN = '';
+				}else{
+		 			data.TICKET_GETOFF_STATION_NAME_CN = '~' + data.TICKET_GETOFF_STATION_NAME_CN ;
+		 		} 
+		 		$("#dataDiv").prepend("<table border='0' cellpadding='0' cellspacing='0' class='" + className +"' style='text-align: center;'>"
+		 		     +"<tr style='text-align: center;'>"
+		 	         +"  <td style='width: 100px;'>" + data.CITY_NAME +"</td>"
+			         +"  <td style='width: 300px;'>" + data.TICKET_PICKUP_STATION_NAME_CN +"" + data.TICKET_GETOFF_STATION_NAME_CN + " </td>"
+		 	         +"  <td style='width: 300px;'>" + data.TICKET_ACTUAL_TAKE_TICKET_NUM + "张</td>"
+		 	         +" </tr>"
+			         +"</table>");
+		 		if($("#dataDiv table").length>6){
+					$("#dataDiv table:gt(5)").remove();
+		 		}
+		 	}
+		 });
+		
+		new Source({
+			handle:function(data){
+				optionSource.legend.data = data.names;
+				optionSource.series[0].data = data.rows;
+				chartSource.setOption(optionSource);
+			}
+		});
+		
+		new UserActive({
+			handle:function(data){
+				optionActive.xAxis[0].data = data.xaxis;
+				optionActive.series[0].data = data.new;
+				optionActive.series[1].data = data.old;
+				chartActive.setOption(optionActive);
+			}
+		});
+		
+		new Subscribe({
+			topic : "total-tickets_current",
+			pattern : false,
+			handle : function(data){
+				$("#ticket_cs").text(data.长沙);
+				$("#ticket_gz").text(data.广州);
+				$("#ticket_nn").text(data.南宁);
+				$("#ticket_xa").text(data.西安);
+				$("#ticket_qd").text(data.青岛);
+				$("#ticket_zz").text(data.郑州);
+				var total = data.全国;
+				for (var i=$(".num").length-1; i>=0; i--){
+					if (total != undefined) {
+				  		$(".num").eq(i).children().text(total % 10);
+						total = parseInt(total / 10);
+					}
+				}	
+			}
+		});
+			
+        //地图
+		createMap();
+		var dom = document.getElementById("chart-map");
+		var myChartMap = echarts.init(dom);
+		myChartMap.setOption(optionMap);
+});
+</script>
+</html>
+

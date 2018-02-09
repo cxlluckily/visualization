@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>闪客蜂-全国</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-3.3.1.js" type="text/javascript" ></script>
+<script src="js/sockjs.js" type="text/javascript" ></script>
+<script src="js/echarts.js" type="text/javascript" ></script>
+<script src="js/china.js" type="text/javascript" ></script>
+<script src="js/sub.js" type="text/javascript" ></script>
+<script src="js/index/map.js" type="text/javascript" ></script>
+<script src="js/index/tradeStat.js" type="text/javascript" ></script>
+<script src="js/index/lastTime.js" type="text/javascript" ></script>
+<script src="js/index/ticketRecord.js" type="text/javascript" ></script>
+<script src="js/index/tradeSource.js" type="text/javascript" ></script>
+<script src="js/useractive.js" type="text/javascript" ></script>
+<script type="text/javascript">
+$(function(){
+	new tradeStatAll();
+	new tradeSourceAll();
+	new lastTimeSub();
+	new ticketRecord();
+	var chartActive = echarts.init(document.getElementById('mainActive'));
+	new UserActive({
+		handle:function(data){
+			optionActive.xAxis[0].data = data.xaxis;
+			optionActive.series[0].data = data.new;
+			optionActive.series[1].data = data.old;
+			chartActive.setOption(optionActive);
+		}
+	});
+});
+</script>
+</head>
+<body>
+  <div class="index_div">
+  	<div id="skpMap">
+	</div>
+    <div class="index_div_n">
+      <div class="index_top">
+        <h1>闪客蜂全国</h1>
+        <h2 id="realtime">2016-12-20&nbsp;&nbsp;&nbsp;&nbsp;13:20:15</h2>
+      </div>
+      <div class="index_lf">
+        <div class="r_t">
+          <h1>今日售票量</h1>
+          <div class="num_d" id="tradeStatAll">
+            <div class="num"><p>0</p></div>
+            <div class="num"><p>0</p></div>
+            <div class="num"><p>0</p></div>
+            <div class="num"><p>0</p></div>
+            <div class="num"><p>0</p></div>
+            <div class="num" style="background:none;"><p>0</p></div>
+          </div>
+        </div>
+        <div class="r_m mt10">
+		  <div class="r_m_1">
+            <h1>广州</h1>
+            <h2 tradeStat="4401">0</h2>
+          </div>        
+		  <div class="r_m_1 r_m_2">
+            <h1>南宁</h1>
+            <h2 tradeStat="5300">0</h2>
+          </div>          
+        </div>
+        <div class="r_m">
+		  <div class="r_m_1">
+            <h1>青岛</h1>
+            <h2 tradeStat="2660">0</h2>
+          </div>                   
+          <div class="r_m_1 r_m_2">
+            <h1>西安</h1>
+            <h2 tradeStat="7100">0</h2>
+          </div>
+        </div>
+        <div class="r_m">
+  		  <div class="r_m_1">
+            <h1>长沙</h1>
+            <h2 tradeStat="4100">0</h2>
+          </div>        
+          <div class="r_m_1 r_m_2">
+            <h1>郑州</h1>
+            <h2 tradeStat="4500">0</h2>
+          </div>
+        </div>
+        <div class="r_m" style="border-bottom:none;">
+          <div class="r_m_1">
+            <h1>贵阳</h1>
+            <h2 tradeStat="5500">0</h2>
+          </div>
+          <div class="r_m_1 r_m_2">
+            <h1>珠海</h1>
+            <h2 tradeStat="5190">0</h2>
+          </div>
+        </div>
+        <div class="r_t" style="margin-top:10px;">
+          <h1>实时交易记录</h1>
+          <table border="0" cellpadding="0" cellspacing="0" class="in_re_table mt10" id="ticketRecord">
+            <tr>
+              <td>广州</td>
+              <td>广州站~体育西路</td>
+              <td>单程票</td>
+              <td>1张</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="ge"></td>
+            </tr>
+            <tr>
+              <td class="j">广州</td>
+              <td class="j">广州站~体育西路</td>
+              <td class="j">先享后付</td>
+              <td class="j">2张</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="ge"></td>
+            </tr>
+            <tr>
+              <td>广州</td>
+              <td>广州站~体育西路</td>
+              <td>单程票</td>
+              <td>1张</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="ge"></td>
+            </tr>
+            <tr>
+              <td class="j">广州</td>
+              <td class="j">广州站~体育西路</td>
+              <td class="j">先享后付</td>
+              <td class="j">2张</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="ge"></td>
+            </tr>
+            <tr>
+              <td>南宁</td>
+              <td>南湖路~黄兴广场</td>
+              <td>先付后享</td>
+              <td>1张</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="ge"></td>
+            </tr>
+            <tr>
+              <td class="j">广州</td>
+              <td class="j">广州站~体育西路</td>
+              <td class="j">先享后付</td>
+              <td class="j">2张</td>
+            </tr>
+          </table> 
+        </div>
+      </div>
+      <div class="index_rt">
+        <div class="index_r_t">
+          <div class="r_data">
+            <h1>当日交易量（业务）</h1>
+            <ul>
+              <li><span tradeStat="dcp">0</span>单程票</li>
+              <li><span tradeStat="xxhf">0</span>先享后付</li>
+              <li><span tradeStat="xfhx">0</span>先付后享</li>
+              <li><span tradeStat="nfc">0</span>长沙NFC</li>
+              <li class="last"><span tradeStat="coffee">0</span>蜂格咖啡</li>
+            </ul>
+          </div>
+          <div class="clear"></div>
+          <div class="r_data2">
+            <h1>当日交易量（产品）</h1>
+            <div class="r_dd">
+              <div class="r_dd_n">
+                <ul>
+                  <li>闪客蜂</li>
+                  <li class="nnm" style="color:#f47b42"><span tradeSource="闪客蜂APP">0</span></li>
+                </ul>
+              </div>
+              <div class="r_dd_n">
+                <ul>
+                  <li>小程序</li>
+                  <li class="nnm" style="color:#43cb46"><span tradeSource="微信小程序">0</span></li>
+                </ul>
+              </div>
+              <div class="r_dd_n">
+                <ul>
+                  <li>城市服务</li>
+                  <li class="nnm" style="color:#3cbcfc"><span tradeSource="支付宝城市服务">0</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="index_r_b">
+          <div class="chart" style="margin-top:60px;margin-left:110px;">
+            <div class="chart_top"></div>
+            <div class="chart_m">
+              <h1>当日用户来源</h1>
+              <div id="mainSource" style="width: 500px;height:230px;"></div>
+            </div>
+            <div class="chart_bottom"></div>
+          </div>
+          <div class="chart ml50" style="margin-top:60px;float:right;">
+	          <div class="chart_top"></div>
+	          <div class="chart_m">
+	            <h1>每日用户数</h1>
+			   <div id="mainActive" style="width: 500px;height:230px;"></div>
+	          </div>
+	          <div class="chart_bottom"></div>
+	        </div>
+        </div>
+      </div>      
+    </div>  
+  </div> 
+</body>
+<script>
+
+</script>
+</html>
